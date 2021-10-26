@@ -1,0 +1,30 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+        - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+      fail-fast: false
+
+    steps:
+      - run: sudo apt-get update
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: Gr1N/setup-poetry@v4
+      - run: poetry install --no-dev --no-interaction --no-ansi -vvv
+        env:
+          POETRY_VIRTUALENVS_CREATE: false
+      - name: Install pytest
+        run: pip install pytest
+      - name: Test with pytest
+        run: pytest
