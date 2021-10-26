@@ -127,3 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Test audio files
+#testdata/
+
+#Audio files
+*.wav
+*.mp3
+
+#Allowed audio file test
+# !testdata/<MODEL>/<AUDIO_FILE.AUDIO_EXTENSION>
+
+#Visualstudio code
+.vscode
