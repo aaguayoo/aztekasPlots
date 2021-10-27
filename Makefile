@@ -18,6 +18,9 @@ init:
 	@echo "Running shell..."
 	@poetry shell
 
+shell:
+	@poetry shell
+
 pre-commit:
 	@cd ${PROJECT_PATH}/
 	@git add .

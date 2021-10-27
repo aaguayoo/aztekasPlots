@@ -140,3 +140,8 @@ dmypy.json
 
 #Visualstudio code
 .vscode
+
+# Local
+*.dat
+*.png
+*.pdf
