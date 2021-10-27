@@ -76,3 +76,5 @@ def get_data_dict(source: str, plot_dim: int) -> Dict:
 
         if len(raw_data) == 7:
             data_dict["vx3"] = raw_data[5].reshape(Nx1, Nx2).T
+
+    return data_dict

@@ -30,3 +30,7 @@ class Plotter:
         pass
 
     pass
+
+
+# if __name__ == "__main__":
+#    obj = Plotter("./notebooks/data.dat")
