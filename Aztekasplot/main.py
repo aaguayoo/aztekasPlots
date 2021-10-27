@@ -32,5 +32,6 @@ class Plotter:
     pass
 
 
-# if __name__ == "__main__":
-#    obj = Plotter("./notebooks/data.dat")
+if __name__ == "__main__":
+    filename = "./notebooks/data.dat"
+    obj = Plotter(filename)
