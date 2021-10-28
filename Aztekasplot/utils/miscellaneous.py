@@ -62,7 +62,7 @@ def get_data_dict(source: str, plot_dim: int) -> Dict:
     elif plot_dim == 2:
         raw_data = np.loadtxt(source, skiprows=5, unpack=True)
         data_dict["Nx2"] = int(linecache.getline(source, 4))
-        data_dict["COORD"] = str(linecache.getline(source, 4)).rstrip("\n")
+        data_dict["COORD"] = str(linecache.getline(source, 5)).rstrip("\n")
 
         Nx1 = data_dict["Nx1"]
         Nx2 = data_dict["Nx2"]
@@ -76,5 +76,15 @@ def get_data_dict(source: str, plot_dim: int) -> Dict:
 
         if len(raw_data) == 7:
             data_dict["vx3"] = raw_data[5].reshape(Nx1, Nx2).T
+            data_dict["rotation"] = True
 
     return data_dict
+
+
+def remove_nan(data):
+    """Remove NaN values."""
+    mask = np.isnan(data)
+    data[mask] = (
+        np.interp(np.flatnonzero(mask), np.flatnonzero(~mask), data[~mask]) / 4.0
+    )
+    return data
