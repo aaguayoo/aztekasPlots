@@ -32,9 +32,10 @@ def convert_to_plot_coordinates(data_dict: Dict) -> dict:
 
     X1, X2 = np.meshgrid(nx1, nx2)
 
-    if COORD in ["CARTESIAN", "CYLINDRICAL"]:
-        data_dict["X1"] = X1
-        data_dict["X2"] = X2
+    if COORD in ["CARTESIAN", "CYLINDRICAL"] and metric == "Non-rel":
+        data_dict = convert_from_cartesian_minkowski(data_dict, X1, X2)
+    elif COORD in ["CARTESIAN", "CYLINDRICAL"] and metric == "Minkowski":
+        data_dict = convert_from_cartesian_minkowski(data_dict, X1, X2)
     elif COORD in ["SPHERICAL", "POLAR"]:
         r = X1
         th = X2
@@ -45,6 +46,77 @@ def convert_to_plot_coordinates(data_dict: Dict) -> dict:
             data_dict = convert_from_spherical_minkowski(data_dict, r, th)
         elif metric == "Kerr-Schild":
             data_dict = convert_from_spherical_kerr_schild(data_dict, r, th)
+
+    return data_dict
+
+
+def convert_from_cartesian(data_dict: Dict, x: np.ndarray, y: np.ndarray) -> dict:
+    """Convert data from cartesian Minkowski coordinates to cartesian.
+
+    Parameters
+    ----------
+        data_dict [dict]:
+            Data dictionary.
+
+        x [np.ndarray]:
+            X coordinate.
+
+        y [np.ndarray]:
+            Y coordinate.
+
+    Returns:
+    --------
+        data_dict [dict]:
+            Data dictionary with converted coordinates.
+    """
+    X1 = x
+    X2 = y
+
+    vx = data_dict["vx1"]
+    vy = data_dict["vx2"]
+
+    data_dict["X1"] = X1
+    data_dict["X2"] = X2
+    data_dict["vX1"] = vx
+    data_dict["vX2"] = vy
+    data_dict["vv"] = np.sqrt(vx ** 2 + vy ** 2)
+
+    return data_dict
+
+
+def convert_from_cartesian_minkowski(
+    data_dict: Dict, x: np.ndarray, y: np.ndarray
+) -> dict:
+    """Convert data from cartesian Minkowski coordinates to cartesian.
+
+    Parameters
+    ----------
+        data_dict [dict]:
+            Data dictionary.
+
+        x [np.ndarray]:
+            X coordinate.
+
+        y [np.ndarray]:
+            Y coordinate.
+
+    Returns:
+    --------
+        data_dict [dict]:
+            Data dictionary with converted coordinates.
+    """
+    X1 = x
+    X2 = y
+
+    vx = data_dict["vx1"]
+    vy = data_dict["vx2"]
+
+    data_dict["X1"] = X1
+    data_dict["X2"] = X2
+    data_dict["vX1"] = vx
+    data_dict["vX2"] = vy
+    data_dict["vv"] = np.sqrt(vx ** 2 + vy ** 2)
+    data_dict["W"] = 1.0 / np.sqrt(1.0 - data_dict["vv"] ** 2)
 
     return data_dict
 
@@ -60,10 +132,10 @@ def convert_from_spherical_minkowski(
             Data dictionary.
 
         r [np.ndarray]:
-            Radius.
+            Spherical radius.
 
         th [np.ndarray]:
-            Angle.
+            Longitudinal angle.
 
     Returns:
     --------
@@ -81,6 +153,7 @@ def convert_from_spherical_minkowski(
     data_dict["vX1"] = vr * X1 + vth * X2
     data_dict["vX2"] = vr * X2 / r - vth * X1
     data_dict["vv"] = np.sqrt(vr ** 2 + r ** 2 * vth ** 2)
+    data_dict["W"] = 1.0 / np.sqrt(1.0 - data_dict["vv"] ** 2)
 
     return data_dict
 
@@ -94,10 +167,10 @@ def convert_from_spherical(data_dict: Dict, r: np.ndarray, th: np.ndarray) -> di
             Data dictionary.
 
         r [np.ndarray]:
-            Radius.
+            Spherical radius.
 
         th [np.ndarray]:
-            Angle.
+            Longitudinal angle.
 
     Returns:
     --------
@@ -130,10 +203,10 @@ def convert_from_spherical_kerr_schild(
             Data dictionary.
 
         r [np.ndarray]:
-            Radius.
+            Spherical radius.
 
         th [np.ndarray]:
-            Angle.
+            Longitudinal angle.
 
     Returns:
     --------
@@ -192,7 +265,7 @@ def convert_from_spherical_kerr_schild(
 
     # Compute the Non-Horizon Penetrating (NH) velocity vector
     alpha_NH = np.sqrt(
-        metric_dict["rho2"] * metric_dict["Delta"] / metric_dict["Sigma"]
+        np.abs(metric_dict["rho2"] * metric_dict["Delta"] / metric_dict["Sigma"])
     )
     gamma_rr = metric_dict["rho2"] / metric_dict["Delta"]
     gamma_thth = metric_dict["rho2"]
