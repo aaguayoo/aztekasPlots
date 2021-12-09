@@ -5,3 +5,7 @@ Plot facilites for aztekas GRHD simulations.
 ```bash
 poetry add git+ssh://git@github.com:aaguayoo/aztekasPlot.git
 ```
+
+## Check documentation
+
+You can check the aztekasPlot documentation in https://aaguayoo.github.io/aztekasPlot/
