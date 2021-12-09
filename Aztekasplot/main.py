@@ -339,12 +339,14 @@ class Plotter:
         self.__set_plot_var(plot_var, scale, plot_var_0)
 
         # Get contour plot parameters
-        if not cbar_min:
-            self.cbar_min = self.plot_var.min()
-        if not cbar_max:
-            self.cbar_max = self.plot_var.max()
+        if cbar_min is None:
+            cbar_min = self.plot_var.min()
+        if cbar_max is None:
+            cbar_max = self.plot_var.max()
 
-        self.cmap_levels = np.linspace(self.cbar_min, self.cbar_max, cbar_levels)
+        self.cmap_levels = np.linspace(cbar_min, cbar_max, cbar_levels)
+        self.cbar_min = cbar_min
+        self.cbar_max = cbar_max
 
         self.__call_contour_methods(
             cmap,
