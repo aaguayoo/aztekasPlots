@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Aztekasplot"
-version = "0.1.0"
+version = "0.2.0"
 description = "Plotting facilities for aztekas (gr)hd simulations. - Module Aztekasplot"
 authors = ["Alejandro aguayo-ortiz <aaguayoo92@ciencias.unam.mx>"]
 packages = [{include="Aztekasplot"}]
