@@ -1,5 +1,5 @@
 """Package related tests."""
-from Aztekasplot import __version__
+from aztekasPlot import __version__
 
 
 def test_version():

@@ -1,4 +1,4 @@
-::: Aztekasplot.main
+::: aztekasPlot.main
     handler: python
     rendering:
         show_root_heading: false
