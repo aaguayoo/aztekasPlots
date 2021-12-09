@@ -476,7 +476,8 @@ class Plotter:
         x2_ticks: List = None,
         x1_nticks: int = 5,
         x2_nticks: int = 5,
-        ticks_decimals: int = 0,
+        x1_ticks_decimals: int = 0,
+        x2_ticks_decimals: int = 0,
     ) -> None:
         """Set axis label.
 
@@ -494,28 +495,31 @@ class Plotter:
             x2_nticks [int]:
                 Number of x2 ticks.
 
-            ticks_decimals [int]:
-                Number of decimals.
+            x1_ticks_decimals [int]:
+                Number of x1 ticks decimals.
+
+            x2_ticks_decimals [int]:
+                Number of x2 ticks decimals.
         """
-        if x1_nticks or ticks_decimals:
+        if x1_nticks or x1_ticks_decimals:
             if not x1_ticks:
                 x1_ticks = np.linspace(
                     self.x1min, self.x1max, num=x1_nticks, endpoint=True
                 )
             plt.xticks(
                 x1_ticks,
-                [f"{x1_tick:.{ticks_decimals}f}" for x1_tick in x1_ticks],
+                [f"{x1_tick:.{x2_ticks_decimals}f}" for x1_tick in x1_ticks],
                 fontsize=self.fontsize,
             )
 
-        if x2_nticks or ticks_decimals:
+        if x2_nticks or x1_ticks_decimals:
             if not x2_ticks:
                 x2_ticks = np.linspace(
                     self.x2min, self.x2max, num=x2_nticks, endpoint=True
                 )
             plt.yticks(
                 x2_ticks,
-                [f"{x2_tick:.{ticks_decimals}f}" for x2_tick in x2_ticks],
+                [f"{x2_tick:.{x2_ticks_decimals}f}" for x2_tick in x2_ticks],
                 fontsize=self.fontsize,
             )
 
