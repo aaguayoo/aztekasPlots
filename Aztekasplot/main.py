@@ -428,7 +428,19 @@ class Plotter:
         stream_color: str = "white",
         stream_linewidth: float = 0.5,
     ) -> None:
-        """TODO"""
+        """Get streamlines.
+
+        Parameters:
+        -----------
+            stream_density [float or List[float]]:
+                Stream density.
+
+            stream_color [str]:
+                Stream color.
+
+            stream_linewidth [float]:
+                Stream linewidth.
+        """
         sx1 = np.linspace(self.x1min, self.x1max, self.data_dict["Nx1"])
         sx2 = np.linspace(self.x2min, self.x2max, self.data_dict["Nx2"])
         sX1, sX2 = np.meshgrid(sx1, sx2)
