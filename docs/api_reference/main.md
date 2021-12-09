@@ -1,4 +1,4 @@
-::: aztekasPlot
+::: aztekasPlot.Plotter
     handler: python
     rendering:
         show_root_heading: false
