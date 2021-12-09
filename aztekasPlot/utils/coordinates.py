@@ -3,7 +3,7 @@ from typing import Dict
 
 import numpy as np
 
-from Aztekasplot.utils.miscellaneous import remove_nan
+from aztekasPlot.utils.miscellaneous import remove_nan
 
 
 def convert_to_plot_coordinates(data_dict: Dict) -> dict:
