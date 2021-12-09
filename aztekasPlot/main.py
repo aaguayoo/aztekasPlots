@@ -11,8 +11,8 @@ from pydantic.dataclasses import dataclass
 from scipy.interpolate import griddata
 
 # Local modules
-from Aztekasplot.utils.coordinates import convert_to_plot_coordinates
-from Aztekasplot.utils.miscellaneous import get_data_dict, get_plot_dim
+from aztekasPlot.utils.coordinates import convert_to_plot_coordinates
+from aztekasPlot.utils.miscellaneous import get_data_dict, get_plot_dim
 
 
 @dataclass
