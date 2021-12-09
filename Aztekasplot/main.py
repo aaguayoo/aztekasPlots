@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 from pydantic.dataclasses import dataclass
+from scipy.interpolate import griddata
 
 # Local modules
 from Aztekasplot.utils.coordinates import convert_to_plot_coordinates
@@ -421,9 +422,47 @@ class Plotter:
 
         self.__set_colorbar_label(cbar_label, labelpad, rotation)
 
-    def get_streamlines():
+    def get_streamlines(
+        self,
+        stream_density: float or List[float] = None,
+        stream_color: str = "white",
+        stream_linewidth: float = 0.5,
+    ) -> None:
         """TODO"""
-        pass
+        sx1 = np.linspace(self.x1min, self.x1max, self.data_dict["Nx1"])
+        sx2 = np.linspace(self.x2min, self.x2max, self.data_dict["Nx2"])
+        sX1, sX2 = np.meshgrid(sx1, sx2)
+
+        px1 = self.data_dict["X1"].flatten()
+        px2 = self.data_dict["X2"].flatten()
+        pvX1 = self.data_dict["vX1"].flatten()
+        pvX2 = self.data_dict["vX2"].flatten()
+
+        gvX1 = griddata((px1, px2), pvX1, (sX1, sX2), method="cubic")
+        gvX2 = griddata((px1, px2), pvX2, (sX1, sX2), method="cubic")
+
+        if not stream_density:
+            stream_density = [1.0, self.data_dict["Nx1"] / self.data_dict["Nx2"]]
+
+        self.ax.streamplot(
+            sx1,
+            sx2,
+            gvX1,
+            gvX2,
+            density=stream_density,
+            color=stream_color,
+            linewidth=stream_linewidth,
+        )
+        if self.X2_reflect:
+            self.ax.streamplot(
+                -sx1,
+                sx2,
+                -gvX1,
+                gvX2,
+                density=stream_density,
+                color=stream_color,
+                linewidth=stream_linewidth,
+            )
 
     def save_figure(self, filename: str, dpi=300) -> None:
         """Save figure.
