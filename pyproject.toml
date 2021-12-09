@@ -23,13 +23,15 @@ coverage = "5.3"
 pytest-cov = "2.10.1"
 pyinstrument = "3.3.0"
 isort = "5.8.0"
-mkdocs = "1.2.2"
+mkdocs = "1.2.3"
 mypy = "0.910"
 memory-profiler = "0.58.0"
 psutil = "5.8.0"
 jovian = "0.2.41"
 jupyterlab = "3.2.1"
 ipykernel = "6.4.2"
+mkdocstrings = "^0.16.2"
+mkdocs-material = "^8.0.5"
 
 
 [tool.isort]

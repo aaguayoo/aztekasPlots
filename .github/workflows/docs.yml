@@ -17,4 +17,6 @@ jobs:
       - run: pip install linecache2==1.0.0
       - run: pip install scipy==1.7.3
       - run: pip install matplotlib==3.3.0
+      - run: pip install mkdocs-material==8.0.5
+      - run: pip install mkdocstrings==0.16.2
       - run: mkdocs gh-deploy --force
