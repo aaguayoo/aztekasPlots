@@ -6,9 +6,10 @@ authors = ["Alejandro aguayo-ortiz <aaguayoo92@ciencias.unam.mx>"]
 packages = [{include="Aztekasplot"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<3.10"
 pydantic = "^1.8.2"
 linecache2 = "^1.0.0"
+scipy = "^1.7.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "5.2"
