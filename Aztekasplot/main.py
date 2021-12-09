@@ -506,22 +506,34 @@ class Plotter:
                 x1_ticks = np.linspace(
                     self.x1min, self.x1max, num=x1_nticks, endpoint=True
                 )
-            plt.xticks(
-                x1_ticks,
-                [f"{x1_tick:.{x2_ticks_decimals}f}" for x1_tick in x1_ticks],
-                fontsize=self.fontsize,
-            )
+                plt.xticks(
+                    x1_ticks,
+                    [f"{x1_tick:.{x2_ticks_decimals}f}" for x1_tick in x1_ticks],
+                    fontsize=self.fontsize,
+                )
+            else:
+                plt.xticks(
+                    x1_ticks,
+                    x1_ticks,
+                    fontsize=self.fontsize,
+                )
 
         if x2_nticks or x1_ticks_decimals:
             if not x2_ticks:
                 x2_ticks = np.linspace(
                     self.x2min, self.x2max, num=x2_nticks, endpoint=True
                 )
-            plt.yticks(
-                x2_ticks,
-                [f"{x2_tick:.{x2_ticks_decimals}f}" for x2_tick in x2_ticks],
-                fontsize=self.fontsize,
-            )
+                plt.yticks(
+                    x2_ticks,
+                    [f"{x2_tick:.{x2_ticks_decimals}f}" for x2_tick in x2_ticks],
+                    fontsize=self.fontsize,
+                )
+            else:
+                plt.yticks(
+                    x2_ticks,
+                    x2_ticks,
+                    fontsize=self.fontsize,
+                )
 
     def set_axis_labels(
         self,
