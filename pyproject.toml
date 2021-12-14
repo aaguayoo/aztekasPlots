@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aztekasPlot"
-version = "0.3.0"
+version = "0.3.1"
 description = "Plotting facilities for aztekas (gr)hd simulations."
 authors = ["Alejandro aguayo-ortiz <aaguayoo92@ciencias.unam.mx>"]
 packages = [{include="aztekasPlot"}]
@@ -32,6 +32,8 @@ jupyterlab = "3.2.1"
 ipykernel = "6.4.2"
 mkdocstrings = "^0.16.2"
 mkdocs-material = "^8.0.5"
+nbconvert = "^6.3.0"
+jupyter-contrib-nbextensions = "^0.5.1"
 
 
 [tool.isort]
