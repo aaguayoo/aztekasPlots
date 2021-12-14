@@ -8,5 +8,6 @@ plugins:
 
 nav:
   - Home: 'index.md'
+  - Examples: 'examples.md'
   - 'API reference':
       - 'Model': 'api_reference/main.md'

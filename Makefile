@@ -33,3 +33,9 @@ profile:
 
 test:
 	@pytest ${PROJECT_PATH}/tests
+
+jup2md:
+ifdef name
+	@cd ${PROJECT_PATH}/notebooks
+	@poetry run jupyter nbconvert ${name} --to markdown
+endif
