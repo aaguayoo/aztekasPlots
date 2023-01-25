@@ -8,8 +8,15 @@ theme:
    logo: 'https://cdn.discordapp.com/attachments/922938993987969054/1001964834151215154/Logo_M.png'
    favicon: 'https://cdn.discordapp.com/attachments/922938993987969054/1001964834151215154/Logo_M.png'
    palette:
-      scheme: default
-      primary: blue grey
+      - scheme: default
+        toggle:
+         icon: material/brightness-4
+         name: Switch to dark mode
+      - scheme: slate
+        toggle:
+         icon: material/brightness-7
+         name: Switch to light mode
+
 
 plugins:
    - search
@@ -23,21 +30,12 @@ plugins:
 
 nav:
    - Inicio: 'index.md'
-   - "Documento de diseño": 'design_doc.md'
+   - Documento de diseño: 'design_doc.md'
    - Ejemplos: 'examples.md'
-   - Memoria: 'profiler.md'
    - 'API reference':
       - 'Decorators': 'api_reference/decorators.md'
       - 'Schemas': 'api_reference/schemas.md'
       - 'Types': 'api_reference/types.md'
-      - 'Processing tools':
-         - 'Audio processing': 'api_reference/processing_tools/audio_processing.md'
-         - 'Feature extraction': 'api_reference/processing_tools/feature_extraction.md'
-         - 'Pre-processing': 'api_reference/processing_tools/pre_processing.md'
-      - 'Segmentation tools':
-         - 'Feature segmentation': 'api_reference/segmentation_tools/feature_segmentation.md'
-         - 'Label segmentation': 'api_reference/segmentation_tools/label_segmentation.md'
-         - 'Sound Activity Detection': 'api_reference/segmentation_tools/sound_activity_detection.md'
 
 extra:
    version:
