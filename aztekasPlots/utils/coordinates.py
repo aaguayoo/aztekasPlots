@@ -83,7 +83,7 @@ def convert_from_cartesian(data_dict: Dict, x: np.ndarray, y: np.ndarray) -> dic
     data_dict["X2"] = X2
     data_dict["vX1"] = vx
     data_dict["vX2"] = vy
-    data_dict["vv"] = np.sqrt(vx ** 2 + vy ** 2)
+    data_dict["vv"] = np.sqrt(vx**2 + vy**2)
 
     return data_dict
 
@@ -119,7 +119,7 @@ def convert_from_cartesian_minkowski(
     data_dict["X2"] = X2
     data_dict["vX1"] = vx
     data_dict["vX2"] = vy
-    data_dict["vv"] = np.sqrt(vx ** 2 + vy ** 2)
+    data_dict["vv"] = np.sqrt(vx**2 + vy**2)
     data_dict["W"] = 1.0 / np.sqrt(1.0 - data_dict["vv"] ** 2)
 
     return data_dict
@@ -156,7 +156,7 @@ def convert_from_spherical_minkowski(
     data_dict["X2"] = X2
     data_dict["vX1"] = vr * X1 + vth * X2
     data_dict["vX2"] = vr * X2 / r - vth * X1
-    data_dict["vv"] = np.sqrt(vr ** 2 + r ** 2 * vth ** 2)
+    data_dict["vv"] = np.sqrt(vr**2 + r**2 * vth**2)
     data_dict["W"] = 1.0 / np.sqrt(1.0 - data_dict["vv"] ** 2)
 
     return data_dict
@@ -191,7 +191,7 @@ def convert_from_spherical(data_dict: Dict, r: np.ndarray, th: np.ndarray) -> di
     data_dict["X2"] = X2
     data_dict["vX1"] = vr * X1 / r + vth * X2 / r
     data_dict["vX2"] = vr * X2 / r - vth * X1 / r
-    data_dict["vv"] = np.sqrt(vr ** 2 + vth ** 2)
+    data_dict["vv"] = np.sqrt(vr**2 + vth**2)
 
     return data_dict
 
@@ -221,7 +221,7 @@ def convert_from_spherical_kerr_schild(
     metric_dict = get_metric_dict(a_spin, r, th)
 
     # Define X1 and X2
-    X1 = np.sqrt(r ** 2 + a_spin ** 2) * np.sin(th)
+    X1 = np.sqrt(r**2 + a_spin**2) * np.sin(th)
     X2 = r * np.cos(th)
 
     # Define v_i
@@ -264,7 +264,7 @@ def convert_from_spherical_kerr_schild(
     vphi_HP = Uphi / UT
 
     # Compute stream velocities
-    vX1 = Ur * X1 * r / (r ** 2 + a_spin ** 2) + Uth * X2
+    vX1 = Ur * X1 * r / (r**2 + a_spin**2) + Uth * X2
     vX2 = Ur * X2 / r - Uth * X1
 
     # Compute the Non-Horizon Penetrating (NH) velocity vector
@@ -286,7 +286,7 @@ def convert_from_spherical_kerr_schild(
     vth_NH = Uth_NH / W_NH
     vphi_NH = Uphi_NH / W_NH
 
-    vv_NH = gamma_rr * vr_NH ** 2 + gamma_thth * vth_NH ** 2
+    vv_NH = gamma_rr * vr_NH**2 + gamma_thth * vth_NH**2
     W_NH = 1.0 / np.sqrt(1.0 - vv_NH)
 
     UhatT = UT / np.sqrt(1.0 + 2.0 * r / metric_dict["rho2"])
@@ -340,9 +340,9 @@ def get_metric_dict(a: float, r: np.ndarray, th: np.ndarray) -> dict:
         metric_dict [dict]:
             Metric dictionary.
     """
-    rho2 = r ** 2.0 + (a ** 2.0) * (np.cos(th) ** 2.0)
-    Delta = r ** 2.0 - 2.0 * r + a ** 2.0
-    Sigma = (r ** 2.0 + a ** 2.0) ** 2.0 - (a ** 2.0) * Delta * (np.sin(th) ** 2.0)
+    rho2 = r**2.0 + (a**2.0) * (np.cos(th) ** 2.0)
+    Delta = r**2.0 - 2.0 * r + a**2.0
+    Sigma = (r**2.0 + a**2.0) ** 2.0 - (a**2.0) * Delta * (np.sin(th) ** 2.0)
 
     alpha = 1.0 / np.sqrt(1.0 + 2.0 * r / rho2)
 
@@ -360,10 +360,10 @@ def get_metric_dict(a: float, r: np.ndarray, th: np.ndarray) -> dict:
     gamma_thth = rho2
     gamma_thphi = 0
     gamma_phiphi = (np.sin(th) ** 2.0) * (
-        (a ** 2.0) * (1.0 + 2.0 * r / rho2) * (np.sin(th) ** 2.0) + rho2
+        (a**2.0) * (1.0 + 2.0 * r / rho2) * (np.sin(th) ** 2.0) + rho2
     )
 
-    gammarr = ((a ** 2) * (rho2 + 2.0 * r) * (np.sin(th) ** 2.0) + rho2 ** 2.0) / (
+    gammarr = ((a**2) * (rho2 + 2.0 * r) * (np.sin(th) ** 2.0) + rho2**2.0) / (
         rho2 * (rho2 + 2.0 * r)
     )
     gammarth = 0.0

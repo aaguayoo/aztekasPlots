@@ -148,7 +148,7 @@ pre-commit:
 	@git add .
 	@pre-commit run
 
-pre-commit-jenkins:
+pre-commit-all:
 	@cd ${PROJECT_PATH}/
 	@git add .
 	@pre-commit run
