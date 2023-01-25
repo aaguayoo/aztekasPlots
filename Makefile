@@ -28,7 +28,7 @@ endif
 ## Aliases
 ##########
 aliases:
-	@echo "alias aztekasplot='make -C ${PROJECT_PATH}'" >> ${SHELL_PROFILE}
+	@echo "alias aztekasplots='make -C ${PROJECT_PATH}'" >> ${SHELL_PROFILE}
 
 #################
 ## Change version
@@ -42,8 +42,8 @@ ifdef version
 	sed "s/@v$$old_version/@v${version}/g" mkdocs.yml > temp && mv temp mkdocs.yml; \
 	sed "s/\/v$$old_version/\/v${version}/g" README.md > temp && mv temp README.md
 	@cat pyproject.toml | awk '/^version =/{gsub($$3,"\"${version}\"")};{print}' > temp && mv temp pyproject.toml
-	@cat aztekasPlot/__init__.py | awk '/^__version__ =/{gsub($$3,"\"${version}\"")};{print}' > temp && mv temp aztekasPlot/__init__.py
-	@cat tests/test_aztekasplot.py | awk '/__version__ ==/{gsub($$4,"\"${version}\"")};{print}' > temp && mv temp tests/test_aztekasplot.py
+	@cat aztekasPlots/__init__.py | awk '/^__version__ =/{gsub($$3,"\"${version}\"")};{print}' > temp && mv temp aztekasPlots/__init__.py
+	@cat tests/test_aztekasplots.py | awk '/__version__ ==/{gsub($$4,"\"${version}\"")};{print}' > temp && mv temp tests/test_aztekasplots.py
 	@echo ""
 	@echo "Deploying documentation for version ${version}"
 	@poetry run mike deploy v${version} -b gh-pages --push
@@ -125,8 +125,8 @@ poetry:
 	@poetry run pre-commit install
 	@echo ""
 	@echo "Installing kernel..."
-	@poetry run python -m ipykernel install --user --name aztekasPlot
-	@echo "\033[0;32maztekasPlot kernel installed.\033[0m"
+	@poetry run python -m ipykernel install --user --name aztekasPlots
+	@echo "\033[0;32maztekasPlots kernel installed.\033[0m"
 	@echo ""
 
 poetry-remove:
@@ -169,7 +169,7 @@ profile:
 ifdef version
 	@echo ""
 	@echo "Running memory-profiler for version ${version}..."
-	@poetry run mprof run ${PROJECT_PATH}/profiling/aztekasplot_profiling.py > ${PROJECT_PATH}/profiling/memory_profiler_v${version}.log && echo "Se creó el archivo profiling/memory_profiler_v${version}.log" || echo "Error al correr memory-profiler.";
+	@poetry run mprof run ${PROJECT_PATH}/profiling/aztekasplots_profiling.py > ${PROJECT_PATH}/profiling/memory_profiler_v${version}.log && echo "Se creó el archivo profiling/memory_profiler_v${version}.log" || echo "Error al correr memory-profiler.";
 	@poetry run mprof plot -t "Recorded memory usage" -o ${PROJECT_PATH}/profiling/memory_profiler_plot_v${version}.png && echo "Se creó la gráfica profiling/memory_profiler_plot_v${version}.png" || echo "Error al correr memory-profiler."
 	@poetry run mprof clean
 	@echo ""
@@ -177,7 +177,7 @@ else
 	@echo ""
 	@version=$(shell cat pyproject.toml | awk '/^version =/{print $$3}' | xargs); \
 	echo "Running memory-profiler for version $$version..."; \
-	poetry run mprof run ${PROJECT_PATH}/profiling/aztekasplot_profiling.py > ${PROJECT_PATH}/profiling/memory_profiler_v${version}.log && echo "Se creó el archivo profiling/memory_profiler_v$$version.log" || echo "Error al correr memory-profiler."; \
+	poetry run mprof run ${PROJECT_PATH}/profiling/aztekasplots_profiling.py > ${PROJECT_PATH}/profiling/memory_profiler_v${version}.log && echo "Se creó el archivo profiling/memory_profiler_v$$version.log" || echo "Error al correr memory-profiler."; \
 	poetry run mprof plot -t "Recorded memory usage" -o ${PROJECT_PATH}/profiling/memory_profiler_plot_v$$version.png && echo "Se creó la gráfica profiling/memory_profiler_plot_v$$version.png" || echo "Error al correr memory-profiler."; \
 	poetry run mprof clean;
 	@echo ""

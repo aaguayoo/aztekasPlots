@@ -2,7 +2,6 @@
 from typing import Dict
 
 import numpy as np
-
 from aztekasPlot.utils.miscellaneous import remove_nan
 
 

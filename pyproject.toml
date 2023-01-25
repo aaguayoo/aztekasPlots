@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "aztekasPlot"
+name = "aztekasPlots"
 version = "0.3.2"
 description = "Plotting facilities for aztekas (gr)hd simulations."
 authors = ["Alejandro aguayo-ortiz <aaguayoo92@ciencias.unam.mx>"]
-packages = [{include="aztekasPlot"}]
+packages = [{include="aztekasPlots"}]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
@@ -53,7 +53,7 @@ multi_line_output = 3
 include_trailing_comma = true
 default_section = "THIRDPARTY"
 known_third_party = []
-known_first_party = ["aztekasPlot"]
+known_first_party = ["aztekasPlots"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
