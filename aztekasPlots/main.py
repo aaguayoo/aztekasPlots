@@ -1,6 +1,6 @@
 """Aztekasplot Model."""
 # Standar modules
-from typing import Dict, List, Tuple
+from typing import List, Tuple
 
 # Third party modules
 import matplotlib
@@ -11,19 +11,34 @@ from pydantic.dataclasses import dataclass
 from scipy.interpolate import griddata
 
 # Local modules
-from aztekasPlot.utils.coordinates import convert_to_plot_coordinates
-from aztekasPlot.utils.miscellaneous import get_data_dict, get_plot_dim
+from aztekasPlots.utils.coordinates import convert_to_plot_coordinates
+from aztekasPlots.utils.miscellaneous import get_data_dict, get_plot_dim
 
 
 @dataclass
 class Plotter:
-    """aztekasPlotter Class."""
+    """aztekasPlotter Class.
+
+    Attributes:
+        source (str):
+            Path to the `aztekas` data output file.
+
+        metric (str):
+            Name of the space-time metric where the simulation was performed.
+            Options:
+                - `'Non-rel'` (**Default**)
+                - `'Minkowski'`
+                - `'Kerr-Schild'` (If selected, `a_spin` must be defined.)
+
+        a_spin (float):
+            Float with value of black hole spin. 0 for Schwarzschild
+            (horizon-penetrating) and != 0 for Kerr-Schild. `'Kerr-Schild'`
+            metric must be specified.
+    """
 
     source: str = None
 
-    data_dict: Dict = None
-
-    metric: str = "Minkowski"
+    metric: str = "Non-rel"
 
     a_spin: float = None
 

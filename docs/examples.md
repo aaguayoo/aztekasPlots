@@ -28,7 +28,7 @@ plot.get_streamlines()
 
 
 
-![png](aztekasPlot_files/aztekasPlot_2_0.png)
+![png](img/aztekasPlot_2_0.png)
 
 
 
@@ -56,7 +56,7 @@ plot.get_contour_plot(plot_var="rho",
 plot.get_colorbar(bar_width=8,cbar_pad = 0.15, cbar_label="$\\log(\\rho/\\rho_0)$",labelpad=22)
 ```
 
-![png](aztekasPlot_files/aztekasPlot_4_0.png)
+![png](img/aztekasPlot_4_0.png)
 
 
 ```python

@@ -1,13 +1,80 @@
-site_name: aztekas Plot
+site_name: Aztekas Plots
+
+repo_url: https://github.com/aaguayoo/aztekasPlots/tree/v0.3.2
+repo_name: aztekasPlots@v0.3.2
 
 theme:
-  name: "material"
+   name: 'material'
+   palette:
+      - scheme: default
+        toggle:
+         icon: material/brightness-4
+         name: Switch to dark mode
+      - scheme: slate
+        toggle:
+         icon: material/brightness-7
+         name: Switch to light mode
+
 
 plugins:
-  - mkdocstrings
+   - search
+   - autorefs
+   - mkdocstrings
+   - mike:
+      canonical_version: null
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
 
 nav:
-  - Home: 'index.md'
-  - Examples: 'examples.md'
-  - 'API reference':
-      - 'Model': 'api_reference/main.md'
+   - Inicio: 'index.md'
+   - Documento de diseño: 'design_doc.md'
+   - Ejemplos: 'examples.md'
+   - 'API reference':
+      - 'Decorators': 'api_reference/decorators.md'
+      - 'Schemas': 'api_reference/schemas.md'
+      - 'Types': 'api_reference/types.md'
+
+extra:
+   version:
+      provider: mike
+   social:
+      - icon: fontawesome/brands/github
+        link: https://github.com/LyticaMx
+
+extra_css:
+   - css/extra.css
+
+markdown_extensions:
+   - abbr
+   - admonition
+   - attr_list
+   - def_list
+   - footnotes
+   - meta
+   - toc:
+       permalink: true
+   - pymdownx.arithmatex:
+       generic: true
+   - pymdownx.betterem:
+       smart_enable: all
+   - pymdownx.caret
+   - pymdownx.critic
+   - pymdownx.details
+   - pymdownx.highlight
+   - pymdownx.inlinehilite
+   - pymdownx.keys
+   - pymdownx.mark
+   - pymdownx.smartsymbols
+   - pymdownx.snippets:
+       check_paths: true
+   - pymdownx.superfences:
+       custom_fences:
+         - name: mermaid
+           class: mermaid
+           format: !!python/name:pymdownx.superfences.fence_code_format
+   - pymdownx.tabbed
+   - pymdownx.tilde
+   - pymdownx.tasklist:
+        clickable_checkbox: true
+        custom_checkbox: false
