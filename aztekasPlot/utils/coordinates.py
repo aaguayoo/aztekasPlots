@@ -36,7 +36,7 @@ def convert_to_plot_coordinates(data_dict: Dict) -> dict:
         data_dict = convert_from_cartesian_minkowski(data_dict, X1, X2)
     elif COORD in ["CARTESIAN", "CYLINDRICAL"] and metric == "Minkowski":
         data_dict = convert_from_cartesian_minkowski(data_dict, X1, X2)
-    elif COORD in ["SPHERICAL", "POLAR"]:
+    elif COORD in ["SPHERICAL"]:
         r = X1
         th = X2
 
@@ -46,6 +46,11 @@ def convert_to_plot_coordinates(data_dict: Dict) -> dict:
             data_dict = convert_from_spherical_minkowski(data_dict, r, th)
         elif metric == "Kerr-Schild":
             data_dict = convert_from_spherical_kerr_schild(data_dict, r, th)
+    elif COORD in ["POLAR"]:
+        r = X1
+        _ = X2  # phi
+        # if metric == "Kerr-Schild":
+        # data_dict = convert_from_polar_kerr_schild(data_dict, r, phi)
 
     return data_dict
 
