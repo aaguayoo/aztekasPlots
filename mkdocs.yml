@@ -1,12 +1,10 @@
 site_name: Audiotools
 
-repo_url: https://LyticaMx.github.io/voiceutils-audioTools/tree/v0.1.0
-repo_name: voiceutils-audioTools@v0.1.0
+repo_url: https://github.com/aaguayoo/aztekasPlots/tree/v0.3.2
+repo_name: aztekasPlots@v0.3.2
 
 theme:
    name: 'material'
-   logo: 'https://cdn.discordapp.com/attachments/922938993987969054/1001964834151215154/Logo_M.png'
-   favicon: 'https://cdn.discordapp.com/attachments/922938993987969054/1001964834151215154/Logo_M.png'
    palette:
       - scheme: default
         toggle:
