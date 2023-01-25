@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aztekasPlot"
-version = "0.3.0"
+version = "0.3.1"
 description = "Plotting facilities for aztekas (gr)hd simulations."
 authors = ["Alejandro aguayo-ortiz <aaguayoo92@ciencias.unam.mx>"]
 packages = [{include="aztekasPlot"}]
@@ -46,7 +46,6 @@ pytest = "7.1.1"
 pytest-cov = "2.10.1"
 pytest-watch = "4.2.0"
 streamlit = "1.10.0"
-
 
 [tool.isort]
 line_length = 88
