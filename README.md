@@ -1,5 +1,5 @@
 # aztekasPlot
-Plot facilites for aztekas GRHD simulations.
+Plot facilites for [aztekas](https://github.com/aztekas-code/aztekas-main) GRHD simulations.
 
 ## Installing using `poetry`
 ```bash
